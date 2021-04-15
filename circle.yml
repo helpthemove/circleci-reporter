@@ -8,4 +8,4 @@ test:
   post:
   - bundle exec rake rubycritic
   - bundle exec yard doc -o $CIRCLE_ARTIFACTS/doc
-  - bundle exec rake circleci:report_coverage
+  - bundle exec rake circleci_reporter:coverage
