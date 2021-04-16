@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.0] - 2020-04-16
+### Changed
+- Upgrade Faraday version dependency
+- Minor fixes
+
 ## [0.8.0] - 2017-05-31
 ### Changed
 - Use artifacts in container No. 0
