@@ -72,14 +72,14 @@ module CircleCIReporter
         ----------------------|----------------------------------------------------------------------------
         artifacts_dir         | #{artifacts_dir.inspect}
         base_revision         | #{base_revision.inspect}
-        circleci_token        | #{circleci_token[-4..-1].rjust(40, '*').inspect}
+        circleci_token        | #{circleci_token[-4..-1].rjust(40, '*').inspect if circleci_token}
         current_build_number  | #{current_build_number.inspect}
         current_revision      | #{current_revision.inspect}
         previous_build_number | #{previous_build_number.inspect}
         reporters             | #{reporters.inspect}
         repository_name       | #{repository_name.inspect}
         user_name             | #{user_name.inspect}
-        vcs_token             | #{vcs_token[-4..-1].rjust(40, '*').inspect}
+        vcs_token             | #{vcs_token[-4..-1].rjust(40, '*').inspect if vcs_token}
         vcs_type              | #{vcs_type.inspect}
       EOF
     end
