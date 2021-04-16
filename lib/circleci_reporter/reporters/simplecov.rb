@@ -23,7 +23,7 @@ module CircleCIReporter
       # @param json [String]
       # @return [Float]
       def parse_json(json)
-        JSON.parse(json)['result']['covered_percent'].to_f
+        JSON.parse(json)['result']['line'].to_f
       end
     end
   end
