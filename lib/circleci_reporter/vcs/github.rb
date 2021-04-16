@@ -20,8 +20,8 @@ module CircleCIReporter
       # @param body [String]
       # @return [Faraday::Response]
       def request(body)
-        Faraday.new(url: 'https://api.github.com').post do |req|
-          req.url ['/repos', configuration.project, 'commits', configuration.current_revision, 'comments'].join('/')
+        url = ['https://api.github.com', 'repos', configuration.project, 'commits', configuration.current_revision, 'comments'].join('/')
+        Faraday.post(url) do |req|
           req.headers['Authorization'] = "token #{token}"
           req.headers['Content-Type'] = 'application/json'
           req.body = JSON.generate(body: body)
