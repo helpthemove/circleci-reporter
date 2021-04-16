@@ -22,8 +22,8 @@ This is a maitained fork of [CircleCI::CoverageReporter](https://github.com/incr
 
     Name                               | Value
     -----------------------------------|----------------------------------------------------------------
-    `COVERAGE_REPORTER_CIRCLECI_TOKEN` | CircleCI API token with "view-builds" scope
-    `COVERAGE_REPORTER_VCS_TOKEN`      | GitHub personal access token with "repo" or "public_repo" scope
+    `CIRCLECI_REPORTER_CIRCLECI_TOKEN` | CircleCI API token with "view-builds" scope
+    `CIRCLECI_REPORTER_VCS_TOKEN`      | GitHub personal access token with "repo" or "public_repo" scope
 
 4.  Add the following step to your `circle.yml`:
 
