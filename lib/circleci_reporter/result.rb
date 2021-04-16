@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CircleCIReporter
   # @attr coverage [Float]
   # @attr url [String] URL for coverage index.html

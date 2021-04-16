@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../circleci_reporter'
 require_relative 'client'
 require_relative 'configuration'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CircleCIReporter
   # Encapsulate a CircleCI artifact
   #

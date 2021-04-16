@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'reporters/flow'
 require_relative 'reporters/rubycritic'
 require_relative 'reporters/simplecov'
@@ -9,11 +11,12 @@ module CircleCIReporter
       Reporters::Flow.new,
       Reporters::RubyCritic.new
     ].freeze
-    DEFAULT_VCS_TYPE = 'github'.freeze
+    DEFAULT_VCS_TYPE = 'github'
 
     attr_accessor :circleci_token, :vcs_token
-    attr_writer :artifacts_dir, :base_revision, :current_build_number, :current_revision, :previous_build_number,
-      :reporters, :repository_name, :template, :template_safe_mode, :template_safe_mode, :user_name, :vcs_type
+    attr_writer :artifacts_dir, :base_revision, :current_build_number,
+                :current_revision, :previous_build_number, :reporters, :repository_name,
+                :template, :template_safe_mode, :user_name, :vcs_type
 
     # @return [String]
     def project
@@ -52,7 +55,7 @@ module CircleCIReporter
 
     # @return [Integer, nil]
     def previous_build_number
-      @previous_build_number ||= ENV['CIRCLE_PREVIOUS_BUILD_NUM'] && ENV['CIRCLE_PREVIOUS_BUILD_NUM'].to_i
+      @previous_build_number ||= ENV['CIRCLE_PREVIOUS_BUILD_NUM']&.to_i
     end
 
     # @return [String]
@@ -66,22 +69,22 @@ module CircleCIReporter
     end
 
     # @return [void]
-    def dump # rubocop:disable AbcSize
-      puts <<~EOF
+    def dump
+      puts <<~CONFIGURATION
         Configuration         | Value
         ----------------------|----------------------------------------------------------------------------
         artifacts_dir         | #{artifacts_dir.inspect}
         base_revision         | #{base_revision.inspect}
-        circleci_token        | #{circleci_token[-4..-1].rjust(40, '*').inspect if circleci_token}
+        circleci_token        | #{circleci_token[-4..].rjust(40, '*').inspect if circleci_token}
         current_build_number  | #{current_build_number.inspect}
         current_revision      | #{current_revision.inspect}
         previous_build_number | #{previous_build_number.inspect}
         reporters             | #{reporters.inspect}
         repository_name       | #{repository_name.inspect}
         user_name             | #{user_name.inspect}
-        vcs_token             | #{vcs_token[-4..-1].rjust(40, '*').inspect if vcs_token}
+        vcs_token             | #{vcs_token[-4..].rjust(40, '*').inspect if vcs_token}
         vcs_type              | #{vcs_type.inspect}
-      EOF
+      CONFIGURATION
     end
   end
 end

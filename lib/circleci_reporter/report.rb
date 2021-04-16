@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CircleCIReporter
   # Encapsulate a report created by a reporter.
   #
@@ -62,24 +64,28 @@ module CircleCIReporter
     # @return [String, nil]
     def pretty_base_diff
       return unless base_diff
+
       pretty_diff(base_diff.round(2))
     end
 
     # @return [String, nil]
     def pretty_branch_diff
       return unless branch_diff
+
       pretty_diff(branch_diff.round(2))
     end
 
     # @return [Float, nil]
     def base_diff
       return unless base_result
+
       current_result.coverage - base_result.coverage
     end
 
     # @return [Float, nil]
     def branch_diff
       return unless previous_result
+
       current_result.coverage - previous_result.coverage
     end
 

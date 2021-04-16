@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json'
 
 require_relative '../result'
@@ -6,7 +8,7 @@ require_relative './base'
 module CircleCIReporter
   module Reporters
     class RubyCritic < Base
-      DEFAULT_DIR = 'rubycritic'.freeze
+      DEFAULT_DIR = 'rubycritic'
       def self.default_dir
         'rubycritic'
       end

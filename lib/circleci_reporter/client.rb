@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faraday'
 
 require_relative 'artifact'
@@ -7,7 +9,7 @@ require_relative 'errors'
 module CircleCIReporter
   # CircleCI API client
   class Client
-    CIRCLECI_ENDPOINT = 'https://circleci.com/api/v1.1'.freeze
+    CIRCLECI_ENDPOINT = 'https://circleci.com/api/v1.1'
 
     # Fetch a build data from API and create a {Build} object for it.
     #
@@ -17,9 +19,11 @@ module CircleCIReporter
     # @see https://circleci.com/docs/api/v1-reference/#build
     def single_build(build_number)
       return unless build_number
+
       resp = get(single_build_url(build_number))
       body = JSON.parse(resp.body)
       raise RequestError.new(body['message'], resp) unless resp.success?
+
       create_build(body)
     end
 
@@ -33,7 +37,8 @@ module CircleCIReporter
       resp = get(artifacts_url(build_number))
       body = JSON.parse(resp.body)
       raise RequestError.new(body['message'], resp) unless resp.success?
-      body.map(&method(:create_artifact))
+
+      body.map{ |hash| create_artifact(hash) }
     end
 
     # Find the latest build number for the given vcs revision.
@@ -53,7 +58,8 @@ module CircleCIReporter
     # @return [Faraday::Response]
     def get(url, params = {})
       params['circle-token'] = configuration.circleci_token
-      Faraday.get(url + '?' + params.map { |key, value| "#{key}=#{value}" }.join('&'))
+      query_string = params.map { |key, value| "#{key}=#{value}" }.join('&')
+      Faraday.get("#{url}?#{query_string}")
     end
 
     private
@@ -83,7 +89,8 @@ module CircleCIReporter
       resp = get(recent_builds_url(branch), limit: 100)
       body = JSON.parse(resp.body)
       raise RequestError.new(body['message'], resp) unless resp.success?
-      body.map(&method(:create_build))
+
+      body.map { |hash| create_build(hash) }
     end
 
     # @param branch [String, nil]

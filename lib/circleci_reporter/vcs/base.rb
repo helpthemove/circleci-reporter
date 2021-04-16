@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CircleCIReporter
   module VCS
     # @abstract Subclass and override {#create_comment} to implement a custom VCS client class.
@@ -9,7 +11,7 @@ module CircleCIReporter
 
       # @param body [String]
       # @return [void]
-      def create_comment(body) # rubocop:disable Lint/UnusedMethodArgument
+      def create_comment(body)
         raise NotImplementedError
       end
 

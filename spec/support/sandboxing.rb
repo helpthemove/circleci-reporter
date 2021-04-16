@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'circleci_reporter/sandbox'
 require 'tmpdir'
 

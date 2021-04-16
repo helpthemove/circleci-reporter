@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../report'
 
 module CircleCIReporter
@@ -109,7 +111,7 @@ module CircleCIReporter
 
       # @param json [String]
       # @return [Float]
-      def parse_json(json) # rubocop:disable Lint/UnusedMethodArgument
+      def parse_json(json)
         raise NotImplementedError
       end
     end

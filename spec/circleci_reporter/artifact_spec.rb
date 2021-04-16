@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ffaker'
 
 require 'circleci_reporter/artifact'
@@ -39,7 +41,7 @@ module CircleCIReporter
 
       context 'when the path ends with the given value' do
         let(:value) do
-          path[-6..-1]
+          path[-6..]
         end
 
         context 'and node_index param is not given' do
@@ -69,7 +71,7 @@ module CircleCIReporter
 
       context 'otherwise' do
         let(:value) do
-          path[-6..-1] + 'foo'
+          "#{path[-6..]}foo"
         end
 
         context 'and node_index param is not given' do

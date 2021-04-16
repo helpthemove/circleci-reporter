@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'vcs/github'
 
 module CircleCIReporter
@@ -10,13 +12,13 @@ module CircleCIReporter
 
     # @return [void]
     def dump
-      puts <<~EOF
+      puts <<~RUNNER
         Runner            | Value
         ------------------|-----------------------------------------------------------------------------------
         base_build        | #{base_build.inspect}
         base_build_number | #{base_build_number.inspect}
         previous_build    | #{previous_build.inspect}
-      EOF
+      RUNNER
     end
 
     private
@@ -69,6 +71,7 @@ module CircleCIReporter
     # @return [Integer, nil]
     def base_build_number
       return if configuration.base_revision == configuration.current_revision
+
       @base_build_number ||= client.build_number_by_revision(base_revision, branch: 'master')
     end
   end

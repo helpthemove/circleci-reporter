@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'circleci_reporter/client'
 require_relative 'circleci_reporter/configuration'
 require_relative 'circleci_reporter/errors'
@@ -37,6 +39,7 @@ module CircleCIReporter
     configuration.reporters.select!(&:active?)
     configuration.dump
     raise NoActiveReporter if configuration.reporters.empty?
+
     Runner.new.tap(&:dump).run
   end
 end
