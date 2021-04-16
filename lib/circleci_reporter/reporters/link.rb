@@ -51,7 +51,7 @@ module CircleCIReporter
           configuration.project,
           configuration.current_build_number,
           'artifacts',
-          "0#{configuration.artifacts_dir}",
+          "0/#{configuration.artifacts_dir}",
           path
         ].join('/')
       end
