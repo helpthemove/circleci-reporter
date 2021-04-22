@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'faraday'
+require 'faraday_middleware'
 
 require_relative 'artifact'
 require_relative 'build'
@@ -59,7 +60,10 @@ module CircleCIReporter
     def get(url, params = {})
       params['circle-token'] = configuration.circleci_token
       query_string = params.map { |key, value| "#{key}=#{value}" }.join('&')
-      Faraday.get("#{url}?#{query_string}")
+      connection = Faraday.new do |faraday|
+        faraday.use FaradayMiddleware::FollowRedirects
+      end
+      connection.get("#{url}?#{query_string}")
     end
 
     private
