@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-04-22
+### Changed
+- Add redirect support when dowloading CircleCI artifacts
+
 ## [1.0.0] - 2020-04-16
 ### Changed
 - Upgrade Faraday version dependency
