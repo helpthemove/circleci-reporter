@@ -55,7 +55,10 @@ module CircleCIReporter
 
     # @return [Integer, nil]
     def previous_build_number
-      @previous_build_number ||= ENV['CIRCLE_PREVIOUS_BUILD_NUM']&.to_i
+      return @previous_build_number if defined?(@previous_build_number)
+
+      build_number = ENV['CIRCLE_PREVIOUS_BUILD_NUM']
+      @previous_build_number = (build_number.nil? || build_number.empty?) ? nil : build_number.to_i
     end
 
     # @return [String]
